@@ -12,7 +12,7 @@ import {Container} from "@fusion.io/container";
 let container = new Container();
 ```
 
-After we have an initialized container, we can register some services into it. There are 3 binding methods are supported: `bind()`, `singleton` & `value`.
+After we have an initialized container, we can register some services into it. There are 3 binding methods are supported: `bind()`, `singleton()` & `value()`.
 
 ## Using `container.bind()`
 
