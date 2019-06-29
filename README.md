@@ -93,7 +93,7 @@ let bar = container.make('bar');
 
 ## Resolving with parameters
 
-Optionally, we can resolve a service with some given parameters. Those parameters will passed to the service factory function when invoked.
+Optionally, we can resolve a service with some given parameters. Those parameters will be passed to the service factory function when invoked.
 
 
 ```js
