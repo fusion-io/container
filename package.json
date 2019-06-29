@@ -2,7 +2,7 @@
   "name": "@fusion.io/container",
   "version": "1.0.3",
   "description": "The service container for Fusion.IO",
-  "main": "index.js",
+  "main": "Container.js",
   "scripts": {
     "test": "mocha"
   },
