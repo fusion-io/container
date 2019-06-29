@@ -16,7 +16,7 @@
   "homepage": "https://github.com/fusion-io",
   "bugs": "https://github.com/fusion-io/container/issues",
   "engines": {
-    "node": ">=12.0"
+    "node": ">=12.3"
   },
   "author": "rikky <son.levuthai@gmail.com>",
   "license": "MIT",

@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-    - image: node:dubnium
+    - image: node:12.3
 
     working_directory: ~/repo
 
