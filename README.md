@@ -46,9 +46,9 @@ let fooService = container.make('fooService');
 // assert.equal(fooService, 'foo');
 ```
 
-`container.singleton()` method works similar to `container.bind()` method. Excepts that the factory method **will be invoked** once at the first call of the `make()` method and will be cached. So next time, if the `make()` was called again, it service instance will be returned from the cache instead of invoking the factory method again.
+`container.singleton()` method works similar to `container.bind()` method. Excepts that the factory method **will be invoked** once at the first call of the `make()` method and will be cached. So next time, if the `make()` was called again, the service instance will be returned from the cache instead of invoking the factory method again.
 
-This behavior will ensuring that we **always** get one service instance regardless how many time we call the `make()` method.
+This behavior will ensuring that we **always** get the same service instance regardless how many time we call the `make()` method.
 
 
 ### Using `container.value(serviceName, serviceInstance)`
