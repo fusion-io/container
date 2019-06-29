@@ -1,12 +1,16 @@
 {
   "name": "@fusion.io/container",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The service container for Fusion.IO",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
   },
-  "keywords": ["fusion.io", "dependency injection", "service container"],
+  "keywords": [
+    "fusion.io",
+    "dependency injection",
+    "service container"
+  ],
   "contributors": [],
   "repository": "https://github.com/fusion-io/container",
   "homepage": "https://github.com/fusion-io",
@@ -16,9 +20,7 @@
   },
   "author": "rikky <son.levuthai@gmail.com>",
   "license": "MIT",
-  "dependencies": {
-
-  },
+  "dependencies": {},
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
