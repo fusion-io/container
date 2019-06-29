@@ -8,11 +8,17 @@
   },
   "keywords": ["fusion.io", "dependency injection", "service container"],
   "contributors": [],
+  "repository": "https://github.com/fusion-io/container",
+  "homepage": "https://github.com/fusion-io",
+  "bugs": "https://github.com/fusion-io/container/issues",
   "engines": {
     "node": ">=12.0"
   },
   "author": "rikky <son.levuthai@gmail.com>",
   "license": "MIT",
+  "dependencies": {
+
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4",
