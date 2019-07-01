@@ -21,15 +21,9 @@ exports.Container = Container;
  */
 exports.bind = (dependencies = []) => Symbol => {
 
-    const Wrapper = class extends Symbol {
-        static get dependencies() {
-            return dependencies;
-        }
-    };
+    Symbol.dependencies = dependencies;
 
-    container.autoBind(Wrapper);
-
-    return Wrapper;
+    container.autoBind(Symbol);
 };
 
 /**
@@ -37,44 +31,25 @@ exports.bind = (dependencies = []) => Symbol => {
  */
 exports.singleton = (dependencies = []) => Symbol => {
 
-    const Wrapper = class extends Symbol {
-        static get dependencies() {
-            return dependencies;
-        }
-    };
+    Symbol.dependencies = dependencies;
 
-    container.autoSingleton(Wrapper);
-
-    return Wrapper;
+    container.autoSingleton(Symbol);
 };
 
 /**
  * Bind a Symbol to the container as an Concrete of given Abstract
  */
 exports.bindInversion = (AbstractSymbol, dependencies = []) => Symbol => {
-    const Wrapper = class extends Symbol {
-        static get dependencies() {
-            return dependencies;
-        }
-    };
+    Symbol.dependencies = dependencies;
 
-    container.bindInversion(AbstractSymbol, Wrapper);
-
-    return Wrapper;
+    container.bindInversion(AbstractSymbol, Symbol);
 };
 
 /**
  * Bind a Symbol to the container as an Concrete of given Abstract as a singleton
  */
 exports.singletonInversion = (AbstractSymbol, dependencies = []) => Symbol => {
-    const Wrapper = class extends Symbol {
-        static get dependencies() {
-            return dependencies;
-        }
-    };
+    Symbol.dependencies = dependencies;
 
-    container.singletonInversion(AbstractSymbol, Wrapper);
-
-    return Wrapper;
+    container.singletonInversion(AbstractSymbol, Symbol);
 };
-
