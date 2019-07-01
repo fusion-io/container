@@ -27,7 +27,7 @@ exports.bind = (dependencies = []) => Symbol => {
         }
     };
 
-    container.bindInversion(Symbol, Wrapper);
+    container.autoBind(Wrapper);
 
     return Wrapper;
 };
@@ -43,7 +43,7 @@ exports.singleton = (dependencies = []) => Symbol => {
         }
     };
 
-    container.singletonInversion(Symbol, Wrapper);
+    container.autoSingleton(Wrapper);
 
     return Wrapper;
 };
