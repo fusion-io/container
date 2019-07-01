@@ -1,5 +1,6 @@
 const TYPE_BINDING      = 'binding';
 const TYPE_SINGLETON    = 'singleton';
+const TYPE_VALUE        = 'value';
 
 class Container {
 
@@ -38,6 +39,7 @@ class Container {
      * @return {Container}
      */
     value(key, value) {
+        this.bindings.set(key, { factory: null, type: TYPE_VALUE });
         this.resolved.set(key, value);
 
         return this;
@@ -146,6 +148,16 @@ class Container {
      */
     invoke(key, methodName, ...customArguments) {
         return this.make(key)[methodName](...customArguments);
+    }
+
+    /**
+     * Determine if we bind a dependency before
+     *
+     * @param key
+     * @return {boolean}
+     */
+    bound(key) {
+        return this.bindings.has(key);
     }
 }
 
