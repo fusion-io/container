@@ -2,6 +2,36 @@ const Container = require('./../Container');
 const chai      = require('chai');
 const assert    = chai.assert;
 
+class Foo {
+    method(parameter = '') {
+        return 'bar' + parameter;
+    }
+}
+
+class SymbolWithMeta {
+    constructor(foo) {
+        this.foo = foo;
+    }
+
+    getFoo() {
+        return this.foo;
+    }
+
+    static get dependencies() {
+        return ['foo'];
+    }
+}
+
+class Abstract {
+
+}
+
+class Concrete {
+    static get dependencies() {
+        return [];
+    }
+}
+
 describe('Container tests suite', () => {
 
     let container = null;
@@ -80,6 +110,72 @@ describe('Container tests suite', () => {
             container.value('foo', 'bar');
 
             assert.equal(container.make('foo'), 'bar');
+        });
+    });
+
+    describe('binding a dependency by a Symbol', () => {
+
+        it('can bind a Symbol easily', () => {
+            container.bind(Foo, () => 'bar');
+
+            assert.equal(container.make(Foo), 'bar');
+        });
+
+        it('should bind by Symbol, not the stringified Symbol', () => {
+            container.bind(Foo, () => 'bar');
+            container.bind(Foo.toString(), () => 'bar2');
+
+            assert.equal(container.make(Foo), 'bar');
+        });
+
+        it('can bind a Symbol with meta dependencies',  () => {
+
+            container.value('foo', 'bar');
+            container.autoBind(SymbolWithMeta);
+
+            let instance = container.make(SymbolWithMeta);
+
+            assert.equal(instance.getFoo(), 'bar');
+        });
+
+        it('can bind a singleton Symbol with #dependencies metadata',  () => {
+
+            container.value('foo', 'bar');
+            container.autoSingleton(SymbolWithMeta);
+
+            let instance = container.make(SymbolWithMeta);
+
+            assert.equal(instance.getFoo(), 'bar');
+        });
+
+        it('can register an inversion version of a Symbol', () => {
+            container.bindInversion(Abstract, Concrete);
+
+            const instance = container.make(Abstract);
+            const instance2 = container.make(Abstract);
+
+
+            assert.instanceOf(instance, Concrete);
+            assert.notStrictEqual(instance, instance2);
+        });
+
+        it('can register an inversion version of a Symbol as a singleton', () => {
+            container.singletonInversion(Abstract, Concrete);
+
+            const instance = container.make(Abstract);
+            const instance2 = container.make(Abstract);
+
+            assert.instanceOf(instance, Concrete);
+            assert.strictEqual(instance, instance2);
+        });
+    });
+
+    describe('invoking a dependency method', () => {
+        it('can invoke a dependency method', () => {
+            container.bind(Foo, () => new Foo());
+
+            assert.equal(container.invoke(Foo, 'method'), 'bar');
+            assert.equal(container.invoke(Foo, 'method', '2'), 'bar2');
         });
     });
 });
