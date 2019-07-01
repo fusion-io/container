@@ -1,6 +1,6 @@
 {
   "name": "@fusion.io/container",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "The service container for Fusion.IO",
   "main": "index.js",
   "scripts": {
