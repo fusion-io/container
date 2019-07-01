@@ -22,31 +22,42 @@ exports.Container = Container;
 exports.bind = (dependencies = []) => Symbol => {
     Symbol.dependencies = dependencies;
 
-    container.autoBind(Symbol);
+    container.autoBind(class extends Symbol {
+        static get dependencies() {
+            return dependencies;
+        }
+    });
 };
 
 /**
  * Bind a Symbol to the container as a singleton
  */
 exports.singleton = (dependencies = []) => Symbol => {
-    Symbol.dependencies = dependencies;
-
-    container.autoSingleton(Symbol);
+    container.autoSingleton(class extends Symbol {
+        static get dependencies() {
+            return dependencies;
+        }
+    });
 };
 
 /**
  * Bind a Symbol to the container as an Concrete of given Abstract
  */
 exports.bindInversion = (AbstractSymbol, dependencies = []) => Symbol => {
-    Symbol.dependencies = dependencies;
-    container.bindInversion(AbstractSymbol, Symbol);
+    container.bindInversion(AbstractSymbol, class extends Symbol {
+        static get dependencies() {
+            return dependencies;
+        }
+    });
 };
 
 /**
  * Bind a Symbol to the container as an Concrete of given Abstract as a singleton
  */
 exports.singletonInversion = (AbstractSymbol, dependencies = []) => Symbol => {
-    Symbol.dependencies = dependencies;
-    container.singletonInversion(AbstractSymbol, Symbol);
+    container.singletonInversion(AbstractSymbol, class extends Symbol {
+        static get dependencies() {
+            return dependencies;
+        }
+    });
 };
-
