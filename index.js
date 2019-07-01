@@ -7,7 +7,7 @@ const container = new Container();
  *
  * @type {Container}
  */
-module.exports = container;
+exports.container = container;
 
 /**
  * Expose the Container class
