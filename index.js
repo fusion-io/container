@@ -19,7 +19,7 @@ exports.Container = Container;
 /**
  * Bind a Symbol to the container
  */
-exports.bind = (dependencies = []) => Symbol => {
+exports.bind = (...dependencies) => Symbol => {
     Symbol.dependencies = dependencies;
 
     container.autoBind(Symbol);
@@ -28,7 +28,7 @@ exports.bind = (dependencies = []) => Symbol => {
 /**
  * Bind a Symbol to the container as a singleton
  */
-exports.singleton = (dependencies = []) => Symbol => {
+exports.singleton = (...dependencies) => Symbol => {
     Symbol.dependencies = dependencies;
 
     container.autoSingleton(Symbol);
@@ -37,7 +37,7 @@ exports.singleton = (dependencies = []) => Symbol => {
 /**
  * Bind a Symbol to the container as an Concrete of given Abstract
  */
-exports.bindInversion = (AbstractSymbol, dependencies = []) => Symbol => {
+exports.bindInversion = (AbstractSymbol, ...dependencies) => Symbol => {
     Symbol.dependencies = dependencies;
     container.bindInversion(AbstractSymbol, Symbol);
 };
@@ -45,7 +45,7 @@ exports.bindInversion = (AbstractSymbol, dependencies = []) => Symbol => {
 /**
  * Bind a Symbol to the container as an Concrete of given Abstract as a singleton
  */
-exports.singletonInversion = (AbstractSymbol, dependencies = []) => Symbol => {
+exports.singletonInversion = (AbstractSymbol, ...dependencies) => Symbol => {
     Symbol.dependencies = dependencies;
     container.singletonInversion(AbstractSymbol, Symbol);
 };
