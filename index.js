@@ -49,3 +49,16 @@ exports.singletonInversion = (AbstractSymbol, ...dependencies) => Symbol => {
     Symbol.dependencies = dependencies;
     container.singletonInversion(AbstractSymbol, Symbol);
 };
+
+/**
+ * Method decorator for injecting dependencies in to a class method
+ */
+exports.inject = (...dependencies) => (target, propertyKey, descriptor) => {
+    const originValue = descriptor.value;
+
+    descriptor.value = function (...args) {
+        const deps = dependencies.map(d => container.make(d));
+
+        originValue.apply(this, [...args, ...deps])
+    }
+};
