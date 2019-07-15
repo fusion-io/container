@@ -59,6 +59,6 @@ exports.inject = (...dependencies) => (target, propertyKey, descriptor) => {
     descriptor.value = function (...args) {
         const deps = dependencies.map(d => container.make(d));
 
-        originValue.apply(this, [...args, ...deps])
+        return originValue.apply(this, [...args, ...deps])
     }
 };
